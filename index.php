@@ -195,22 +195,134 @@
 		}
 
 		echo $cpt." tentative(s)";
+		
+
+		$cpt=1;
+
+		do{
+			$number = rand(1, 12);
+			$cpt++;
+		}while ($number != 6);
+
+		echo $cpt." tentative(s)";
+
+		
 		*/
 
 
-		do{
-			...
-		}while (condition);
+		//For : nb itération connu
+
 		
-		echo $cpt." tentative(s)";
+		/*
+		for( $cpt=0 ; $cpt<10 ; $cpt++){
+			//echo $cpt;
+		}
+		
+		for( $cpt=1 ; $cpt<=10 ; $cpt++){
+			echo $cpt;
+		}
+		*/
+
+
+
+
+		// Tableau PHP
+
+		$student = ["Marjorie", "Becot", 13, 14, 10];
+		// Afficher Marjorie a une moyenne de 10/20
+		//echo $student[0]." a une moyenne de ".(($student[2]+$student[3]+$student[4])/3)."/20";
+
+
 		
 
+		$student = [
+						"firstname"=>"Pierre", 
+						"lastname"=>"Michel", 
+						"age"=>14,
+						4
+					];
+
+		//Oups ce n'est pas le bon nom de famille
+		$student["lastname"] = "Kakou";
+
+		//Afficher Prénom Nom a age ans
+		//echo $student["firstname"]." ".$student["lastname"]." a ".$student["age"]." ans";
 
 
 
+		$student = [
+						"firstname"=>["Lucas", "Jean-Claude"],  
+						"lastname"=>["MILLER","DUPONT"], 
+					];
+
+		//echo $student["firstname"][1];
+
+
+		//affichage d'un tableau pour debug
+		//echo "<pre>";			
+		//print_r($student)
+
+
+		$myArray = [
+						[],
+						[
+							[],
+							[
+								[
+									[
+										[
+											[]
+										]
+									],
+									[]
+								]
+							]
+						]
+					]; // 7 dim
+		//echo "<pre>";	
+		//print_r($myArray);
+
+
+
+		$fruits = ["Fraise", "Cerise", "Framboise", "Mangue"];
 
 
 	?>
+
+	<ul>
+		<?php
+			foreach ($fruits as $fruit) {
+				echo "<li>".$fruit."</li>";
+			}
+		?>
+	</ul>
+
+
+
+	<?php
+
+	$class = [
+				["firstname"=>"Ali", "lastname"=>"GOUMANE", "CC" => [12,14], "Partiel"=>11],
+				["firstname"=>"Come", "lastname"=>"ALOISI", "CC" => [2,14], "Partiel"=>4],
+				["firstname"=>"Fatima", "lastname"=>"BEN ALI", "CC" => [10,16], "Partiel"=>13],
+			];
+
+	?>
+
+
+	<table border="1px">
+		<tr>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Moyenn</th>
+		</tr>
+		<tr>
+			<td>Ali</td>
+			<td>GOUMANE</td>
+			<td>12</td>
+		</tr>
+	</table>
+
 
 </body>
 </html>

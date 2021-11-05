@@ -316,11 +316,23 @@
 			<th>Nom</th>
 			<th>Moyenn</th>
 		</tr>
-		<tr>
-			<td>Ali</td>
-			<td>GOUMANE</td>
-			<td>12</td>
-		</tr>
+		<?php
+
+			foreach($class as $student){
+				echo "<tr>";
+				echo "<td>".$student["firstname"]."</td>";
+				echo "<td>".$student["lastname"]."</td>";
+
+				$average = (($student["CC"][0]+$student["CC"][1])/2+$student["Partiel"])/2;
+
+				echo "<td>".$average."</td>";
+
+				echo "</tr>";
+
+			}
+
+
+		?>
 	</table>
 
 

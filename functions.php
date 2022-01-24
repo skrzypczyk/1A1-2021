@@ -33,7 +33,6 @@
 		$firstname = "Yves";
 		helloYou($firstname);
 
-		*/
 
 
 		function cleanLastname($lastname){
@@ -46,22 +45,50 @@
 
 		$lastname = "   skRZyPCZyk ";
 		$lastname = cleanLastname($lastname);
-		echo $lastname;
+		//echo $lastname;
 
 
 
 
 		function cleanFirstname($firstname){
-
-			//....
-			return $firstname;
+			return ucwords(strtolower(trim($firstname)));
 		}
 
-		$firstname = "  yVes ";
+		$firstname = "  Jean PIERRE ";
 		$firstname = cleanFirstname($firstname);
 		echo $firstname;
 
 
+
+
+
+		function cleanEmail(&$emailToClean){
+			$emailToClean = trim($emailToClean);
+			$emailToClean = mb_strtolower($emailToClean);
+		}
+
+
+
+		$email = "y.skrzyPCZYk@GmaiL.com";
+		cleanEmail($email);
+		echo $email;
+
+		*/
+
+
+		function hello($myFirstname, $myLastname=""){
+			echo "Bonjour ". $myFirstname. " ".$myLastname ;
+		}
+
+
+		$myFirstname = "Yves";
+		$myLastname = "SKRZYPCZYK";
+
+		//Bonjour Yves SKRZYPCZYK
+		echo hello($myFirstname, $myLastname);
+
+
+		echo hello("Pierre");
 
 	?>
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -73,7 +73,7 @@
 
 		/*
 
-		if( 0 == null){
+		if( 0 == null ){
 			echo "test";
 		}
 
@@ -82,6 +82,7 @@
 		if( $age>18 ) echo "majeur";
 		elseif( $age==18 )echo "Tout juste majeur";
 		elseif( $age<18 )echo "mineur";
+
 
 
 		$genre = "Mr";
@@ -104,6 +105,8 @@
 				break;
 		}
 
+
+
 		if($genre == "Mr"){
 			echo "Bonjour Monsieur";
 		}elseif ($genre == "Mme"){
@@ -116,7 +119,7 @@
 
 
 		// Admin, Editeur, Auteur, simple internaute
-		$scope = "Autre";
+		$scope = "Editeur";
 			
 		switch ($scope) {
 			case 'Admin':
@@ -284,14 +287,15 @@
 
 
 
-		$fruits = ["Fraise", "Cerise", "Framboise", "Mangue"];
+		$fruits = [0=>"Fraise", 1=>"Cerise", 2=>"Framboise", 3=>"Mangue"];
 
 
 	?>
 
 	<ul>
 		<?php
-			foreach ($fruits as $fruit) {
+			foreach ($fruits as $i=>$fruit) {
+				//echo "<li>".$fruits[$i]."</li>";
 				echo "<li>".$fruit."</li>";
 			}
 		?>
@@ -320,11 +324,11 @@
 
 			foreach($class as $student){
 				echo "<tr>";
+
 				echo "<td>".$student["firstname"]."</td>";
 				echo "<td>".$student["lastname"]."</td>";
 
 				$average = (($student["CC"][0]+$student["CC"][1])/2+$student["Partiel"])/2;
-
 				echo "<td>".$average."</td>";
 
 				echo "</tr>";

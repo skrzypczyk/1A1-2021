@@ -340,6 +340,9 @@
 	</table>
 
 
+	<img src="captcha.php">
+
+
 </body>
 </html>
 

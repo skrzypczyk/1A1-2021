@@ -76,7 +76,7 @@
 		*/
 
 
-		function hello($myFirstname, $myLastname=""){
+		function hello($myFirstname="", $myLastname=""){
 			echo "Bonjour ". $myFirstname. " ".$myLastname ;
 		}
 

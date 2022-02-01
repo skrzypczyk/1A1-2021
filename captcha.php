@@ -7,8 +7,8 @@
 
 
 	$back = imagecolorallocate($image, rand(0,100), rand(0,100), rand(0,100));
-	
-	$black = imagecolorallocate($image, 0, 0, 0);
+
+	$listOfFonts = glob("font/*.ttf");	
 
 
 	$char = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -16,8 +16,37 @@
 	$captcha = substr($char, 0, rand(6,8));
 
 
-	imagestring($image, 5, 100, 70, $captcha, $black);
+	//imagestring($image, 5, 100, 70, $captcha, $black);
 
+	$x = rand(20,30);
+	for($cpt=0; $cpt<strlen($captcha) ; $cpt++){
+
+		$colors[] = imagecolorallocate($image, rand(150,255), rand(150,255), rand(150,255));
+		$font = $listOfFonts[array_rand($listOfFonts)];
+		imagettftext($image, rand(20,25), rand(-15,15), $x, rand(50,125), $colors[$cpt], $font, $captcha[$cpt]);
+		$x += rand(30,35);
+	}
+	
+
+
+	$nbGeometry = rand(5, 8);
+
+	for($cpt = 0; $cpt<$nbGeometry; $cpt++){
+
+		$geometry = rand(1,3);
+		switch ($geometry) {
+			case '1':
+				imagerectangle($image, rand(0,300), rand(0,150), rand(0,300), rand(0,150), $colors[array_rand($colors)]);
+				break;
+			case '2':
+				imageline($image, rand(0,300), rand(0,150), rand(0,300), rand(0,150), $colors[array_rand($colors)]);
+				break;
+			default:
+				imageellipse($image, rand(0,300), rand(0,150), rand(0,300), rand(0,150), $colors[array_rand($colors)]);
+				break;
+		}
+		
+	}
 
 
 	/*

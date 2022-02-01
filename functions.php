@@ -7,7 +7,6 @@
 <body>
 	<?php
 
-		/*
 		function helloWorld(){
 
 			echo "Salut";

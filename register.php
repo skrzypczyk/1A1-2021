@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +10,13 @@
 </head>
 <body>
 
-	
+	<?php
+		if(!empty($_SESSION['errors'])){
+			print_r( $_SESSION['errors'] );
+			unset($_SESSION['errors']);
+			//session_destroy();
+		}
+	?>
 
 	<form method="POST" action="addUser.php">
 

@@ -143,7 +143,7 @@ if(count($errors) == 0){
 								"pwd"=>$pwd,
 							]);
 
-	//header("Location: login.php");	
+	header("Location: login.php");	
 
 }else{
 	

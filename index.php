@@ -11,7 +11,17 @@
 <div class="container">
 	<h1>Salut !</h1>
 
-	<?php isConnected()?>
+	<?php 
+	if (isConnected()) {
+		$pdo = connectDB();
+
+		$queryPrepared = $pdo->prepare("SELECT * FROM iw_user");
+		$queryPrepared->execute();
+		$results = $queryPrepared->fetchAll();
+		echo "<pre>";
+		print_r($results);
+	}
+	?>
 
 </div>
 

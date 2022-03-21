@@ -18,3 +18,43 @@ function connectDB(){
 	return $pdo;
 }
 
+/*
+	$token = createToken();
+	updateToken($results["id"], $token);
+*/
+
+function createToken(){
+	$token = sha1(md5(rand(0,100)."gdgfm432").uniqid());
+	return $token;
+}
+
+
+function updateToken($userId, $token){
+
+	$pdo = connectDB();
+	$queryPrepared = $pdo->prepare("UPDATE iw_user SET token=:token WHERE id=:id");
+	$queryPrepared->execute(["token"=>$token, "id"=>$userId]);
+
+}
+
+
+function isConnected(){
+
+	if(!isset($_SESSION["email"]) || !isset($_SESSION["token"])){
+		return false;
+	}
+
+	$pdo = connectDB();
+	$queryPrepared = $pdo->prepare("SELECT id FROM iw_user WHERE email=:email AND token=:token");	
+	$queryPrepared->execute(["email"=>$_SESSION["email"], "token"=>$_SESSION["token"]]);
+
+	return $queryPrepared->fetch();
+
+}
+
+
+
+
+
+
+

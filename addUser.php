@@ -54,6 +54,19 @@ $errors = [];
 //Email OK
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 	$errors[] = "Email incorrect";
+}else{
+
+	//Vérification l'unicité de l'email
+	$pdo = connectDB();
+	$queryPrepared = $pdo->prepare("SELECT id from iw_user WHERE email=:email");
+
+	$queryPrepared->execute(["email"=>$email]);
+	
+	if(!empty($queryPrepared->fetch())){
+		$errors[] = "L'email existe déjà en bdd";
+	}
+
+
 }
 
 //prénom : Min 2, Max 45 ou empty
@@ -86,7 +99,11 @@ if( count($birthdayExploded)!=3 || !checkdate($birthdayExploded[1], $birthdayExp
 
 
 //Mot de passe : Min 8, Maj, Min et chiffre
-if(strlen($pwd) < 8) {
+if(strlen($pwd) < 8 ||
+preg_match("#\d#", $pwd)==0 ||
+preg_match("#[a-z]#", $pwd)==0 ||
+preg_match("#[A-Z]#", $pwd)==0 
+) {
 	$errors[] = "Votre mot de passe doit faire plus de 8 caractères avec une minuscule, une majuscule et un chiffre";
 }
 
@@ -105,13 +122,16 @@ if( !in_array($country, $countryAuthorized) ){
 
 if(count($errors) == 0){
 
-	$pdo = connectDB();
+	
 
 	//$email = "y.skrzypczy@gmail.com";
 	//$firstname = "');DELETE FROM users;";
 
 	$queryPrepared = $pdo->prepare("INSERT INTO iw_user (email, firstname, lastname, pseudo, country, birthday, pwd) 
 		VALUES ( :email , :firstname, :lastname, :pseudo, :country, :birthday, :pwd );");
+
+
+	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 	
 	$queryPrepared->execute([
 								"email"=>$email,
@@ -122,6 +142,8 @@ if(count($errors) == 0){
 								"birthday"=>$birthday,
 								"pwd"=>$pwd,
 							]);
+
+	//header("Location: login.php");	
 
 }else{
 	

@@ -31,7 +31,7 @@ CREATE TABLE `iw_user` (
   `pseudo` varchar(60) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `date_inserted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_updated` timestamp NULL now() NULL ON UPDATE CURRENT_TIMESTAMP,
+  `date_updated` timestamp DEFAULT now() ON UPDATE CURRENT_TIMESTAMP,
   `token` char(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
